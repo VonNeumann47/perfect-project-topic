@@ -44,10 +44,6 @@ if button:
     description = MODEL.get_last_output()
 
     st.markdown("_" * 10)
-    st.markdown(f"""
-        **Тема проекта**: {topic}
-
-        **Аннотация**
-
-        {description}
-    """)
+    st.markdown(f"**Тема проекта**: {topic}")
+    st.markdown("**Аннотация**")
+    st.markdown(description)
