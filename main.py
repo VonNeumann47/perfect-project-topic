@@ -1,13 +1,13 @@
 import streamlit as st
 
-from model import DEFAULT_MAX_LEN, MAX_LEN, MIN_LEN, MODEL
+# from model import DEFAULT_MAX_LEN, MAX_LEN, MIN_LEN, MODEL
 from topics import QUESTION_TO_OPTIONS
 
 
 st.set_page_config(
     page_title="Perfect project topic!",
-    # page_icon="https://raw.githubusercontent.com/VonNeumann47/perfect-project-topic/main/icon.png",
-    page_icon="https://github.com/VonNeumann47/perfect-project-topic/blob/main/icon.png?raw=true",
+    page_icon="https://raw.githubusercontent.com/VonNeumann47/perfect-project-topic/main/icon.png",
+    # page_icon="https://github.com/VonNeumann47/perfect-project-topic/blob/main/icon.png?raw=true",
 )
 
 st.title("Узнай идеальную тему своего проекта!")
@@ -26,23 +26,23 @@ for question, options in QUESTION_TO_OPTIONS.items():
     ).strip()
     parts.append(options[hash(answer) % len(options)])
 
-max_length = st.slider(
-    "Максимальная длина аннотации (в словах)",
-    MIN_LEN,
-    MAX_LEN,
-    DEFAULT_MAX_LEN,
-    help="Обычный слайдер длины текста, что такого?",
-)
+# max_length = st.slider(
+#     "Максимальная длина аннотации (в словах)",
+#     MIN_LEN,
+#     MAX_LEN,
+#     DEFAULT_MAX_LEN,
+#     help="Обычный слайдер длины текста, что такого?",
+# )
 
 button = st.button("Хочу ИДЕАЛЬНУЮ тему!")
 
-MODEL.clear_output()
+# MODEL.clear_output()
 if button:
     topic = " ".join(parts).replace(" :", ":")
-    MODEL.run_model(topic, max_length=max_length)
-    description = MODEL.get_last_output()
+    # MODEL.run_model(topic, max_length=max_length)
+    # description = MODEL.get_last_output()
 
     st.markdown("_" * 10)
     st.markdown(f"**Тема проекта**: {topic}")
-    st.markdown("**Аннотация**")
-    st.markdown(description)
+    # st.markdown("**Аннотация**")
+    # st.markdown(description)
