@@ -6,9 +6,7 @@ from topics import QUESTION_TO_OPTIONS
 
 st.set_page_config(
     page_title="Perfect project topic!",
-    page_icon=(
-        "https://raw.githubusercontent.com/"
-    ),
+    page_icon="https://raw.githubusercontent.com/VonNeumann47/perfect-project-topic/main/icon.png",
 )
 
 st.title("Узнай идеальную тему своего проекта!")
