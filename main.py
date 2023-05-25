@@ -1,6 +1,6 @@
 import streamlit as st
 
-from model import MODEL
+from model import DEFAULT_MAX_LEN, MAX_LEN, MIN_LEN, MODEL
 from topics import QUESTION_TO_OPTIONS
 
 
@@ -27,12 +27,20 @@ for question, options in QUESTION_TO_OPTIONS.items():
     ).strip()
     parts.append(options[hash(answer) % len(options)])
 
+max_length = st.slider(
+    "Максимальная длина аннотации (в словах)",
+    MIN_LEN,
+    MAX_LEN,
+    DEFAULT_MAX_LEN,
+    help="Обычный слайдер длины текста, что такого?",
+)
+
 button = st.button("Хочу ИДЕАЛЬНУЮ тему!")
 
 MODEL.clear_output()
 if button:
     topic = " ".join(parts).replace(" :", ":")
-    MODEL.run_model(topic)
+    MODEL.run_model(topic, max_length=max_length)
     description = MODEL.get_last_output()
 
     st.markdown("_" * 10)
