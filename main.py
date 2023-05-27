@@ -2,8 +2,12 @@ import hashlib
 
 import streamlit as st
 
+from logger import get_logger
 from model import DEFAULT_MAX_LEN, MAX_LEN, MIN_LEN, MODEL
 from topics import QUESTION_TO_OPTIONS
+
+
+logger = get_logger(__name__)
 
 
 def get_hash(text: str) -> int:
@@ -47,6 +51,9 @@ if button:
     topic = " ".join(parts).replace(" :", ":")
     MODEL.run_model(topic, max_length=max_length)
     description = MODEL.get_last_output()
+
+    logger.info(f"TOPIC = {topic}")
+    logger.info(f"DESCRIPTION = {description}")
 
     st.markdown("_" * 10)
     st.markdown(f"**Тема проекта**: {topic}")
